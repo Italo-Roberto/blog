@@ -66,8 +66,12 @@ error_reporting(0);
             </div>
             <div class="card-body">
                 <div><?= $post['body']; ?></div><br>
-                <p class="text-muted">Autor: <?= $post['author']; ?></p>
                 <hr>
+                <p class="text-muted">Autor: <?= $post['author']; ?></p>
+                <span class="text-muted">
+                    Data: 
+                    <? $criado = date_create(substr($post['date_created'], 0, 10)); echo date_format($criado, "d/m/Y") ?>
+                </span>
                 <div class="d-flex">
                     <? if ($_SESSION['user']) : ?>
                         <button class="btn btn-warning m-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#edit<?= $post['id'] ?>">Editar</button>
