@@ -10,7 +10,7 @@ error_reporting(0);
 ?>
 
 <div class="w-50 d-flex my-2 mx-auto">
-    <div class="card w-75 p-3 mx-auto my-2 border-0 shadow-sm">
+    <div class="card w-75 p-3 mx-auto my-4 border-0 shadow-sm">
         <h1>Postagens</h1>
         <? if(!isset($_SESSION['user'])) { ?>
             <div class="d-flex">
@@ -40,6 +40,9 @@ error_reporting(0);
                         <div class="form-group">
                             <input type="text" name="title" class="form-control" placeholder="Título">
                         </div><br>
+                        <div class="form-group">
+                            <input type="text" name="subtitle" class="form-control" placeholder="Descrição">
+                        </div><br>
                         <input type="hidden" name="author" value="<?= $_SESSION['user'] ?>">
                         <div class="form-group">
                             <textarea id="content" name="body" class="form-control" placeholder="Conteúdo"></textarea>
@@ -59,6 +62,7 @@ error_reporting(0);
         <div class="card w-25 shadow-sm border-0 m-1">
             <div class="card-header">
                 <h3><?= $post['title']; ?></h3>
+                <p><?= $post['subtitle'] ?></p>
             </div>
             <div class="card-body">
                 <div><?= $post['body']; ?></div><br>
@@ -76,6 +80,7 @@ error_reporting(0);
             </div>
         </div>
 
+        <!-- Modal de edição -->
         <div class="modal fade" id="edit<?= $post['id'] ?>" tabindex="-1" aria-labelledby="edit" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -90,10 +95,10 @@ error_reporting(0);
                                 <input type="text" name="title" class="form-control" value="<?= $post['title']; ?>">
                             </div><br>
                             <div class="form-group">
-                                <input type="text" name="author" class="form-control" value="<?= $post['author']; ?>">
+                                <input type="text" name="subtitle" class="form-control" value="<?= $post['subtitle']; ?>">
                             </div><br>
                             <div class="form-group">
-                                <textarea id="content" name="body" class="form-control"><?= $post['body']; ?></textarea>
+                                <textarea id="content2" name="body" class="form-control"><?= $post['body']; ?></textarea>
                             </div><br>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success shadow-sm">Editar</button>

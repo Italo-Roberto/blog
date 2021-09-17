@@ -14,6 +14,7 @@ if (isset($_POST['login'])) {
         $user = $_POST['user'];
         $passwd = $_POST['passwd'];
         $stmt = $conn->prepare("SELECT user, passwd FROM users WHERE user=? AND passwd=?");
+        //Utilizando sha1 como mecanismo de criptografia de senha
         $stmt->bind_param('ss', $user, sha1($passwd));
         $stmt->execute();
         $result = $stmt->get_result();
@@ -30,7 +31,7 @@ if (isset($_POST['login'])) {
 ?>
 
 <div class="main">
-    <div class="card flex-column w-50 mx-auto my-2 p-3 shadow">
+    <div class="card flex-column w-25 mx-auto my-5 p-5 shadow">
         <div class="d-flex justify-content-between">
             <h3>Login</h3>
             <a href="index.php" class="btn btn-primary">Início</a>
